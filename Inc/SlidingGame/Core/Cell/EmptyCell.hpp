@@ -14,7 +14,7 @@ class EmptyCell: public Cell
 public:
     EmptyCell() = default;
 
-    [[nodiscard]] auto IsEmpty() const -> bool override
+    [[nodiscard]] auto isEmpty() const -> bool override
     {
         return true;
     }

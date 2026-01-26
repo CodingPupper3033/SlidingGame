@@ -22,11 +22,24 @@ namespace SlidingGame::Core
             RIGHT
         };
 
+        explicit SlidingGame(const size_t size): SlidingGame(size, size) {}
         SlidingGame(size_t width, size_t height);
-        auto slide(int x, int y, Direction direction) -> void;
+
+        /* Getters */
+        [[nodiscard]] auto getWidth() const -> size_t { return board.getWidth(); }
+        [[nodiscard]] auto getHeight() const -> size_t { return board.getHeight(); }
+        [[nodiscard]] auto getMoves() const -> int { return moves; }
+        [[nodiscard]] auto at(size_t x, size_t y) const -> const Cell&;
+
+        auto slide(size_t x, size_t y, Direction direction) -> void;
 
     private:
         Board board;
+
+        size_t emptyX;
+        size_t emptyY;
+
+        int moves = 0;
     };
 }
 

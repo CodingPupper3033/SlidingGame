@@ -17,13 +17,13 @@ namespace SlidingGame::Core
         Board(std::size_t width, std::size_t height);
 
         /* Getters */
-        [[nodiscard]] auto get_width() const -> std::size_t { return m_width; }
-        [[nodiscard]] auto get_height() const -> std::size_t { return m_height; }
+        [[nodiscard]] auto getWidth() const -> std::size_t { return m_width; }
+        [[nodiscard]] auto getHeight() const -> std::size_t { return m_height; }
 
         [[nodiscard]] auto at(std::size_t x, std::size_t y) const -> const Cell&;
 
         /* Setters */
-        void set_cell(std::size_t x, std::size_t y, std::unique_ptr<Cell> cell);
+        void setCell(std::size_t x, std::size_t y, std::unique_ptr<Cell> cell);
 
         /* Methods */
         void swap(std::size_t x1, std::size_t y1, std::size_t x2, std::size_t y2);
@@ -35,8 +35,8 @@ namespace SlidingGame::Core
         std::vector<std::unique_ptr<Cell>> m_cells;
 
         /* Index & Position */
-        [[nodiscard]] bool is_valid_position(std::size_t x, std::size_t y) const;
-        void ensure_valid_position(std::size_t x, std::size_t y) const;
+        [[nodiscard]] bool isValidPosition(std::size_t x, std::size_t y) const;
+        void ensureValidPosition(std::size_t x, std::size_t y) const;
         [[nodiscard]] std::size_t index(const std::size_t x, const std::size_t y) const { return y * m_width + x; }
     };
 }

@@ -1,4 +1,8 @@
 #include <iostream>
+
+#include "Core/Board.hpp"
+#include "Core/SlidingGame.h"
+#include "Core/Cell/NumberCell.hpp"
 #include "Inc/SlidingGame/Core/Cell/Cell.hpp"
 #include "Inc/SlidingGame/Core/Cell/EmptyCell.hpp"
 
@@ -6,20 +10,20 @@
 int main()
 {
     // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    auto game = SlidingGame::Core::SlidingGame(4);
 
-    auto cell = SlidingGame::Core::EmptyCell();
 
-    if (cell.IsEmpty()) {
-        std::cout << "The cell is empty!" << std::endl;
-    } else {
-        std::cout << "The cell is not empty!" << std::endl;
-    }
+    // Print the initial state of the game board
+    for (size_t y = 0; y < 4; y++) {
+        for (size_t x = 0; x < 4; x++) {
+            const SlidingGame::Core::Cell& cell = game.at(x, y);
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon Src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
+            printf("%s", cell.isEmpty() ? "." : std::to_string(dynamic_cast<const SlidingGame::Core::NumberCell&>(cell).getValue()).c_str());
+            if (x < 4 - 1) {
+                printf("\t");
+            }
+        }
+        printf("\n");
     }
 
     return 0;

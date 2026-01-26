@@ -14,7 +14,8 @@ namespace SlidingGame::Core
     public:
         explicit NumberCell(int number);
 
-        [[nodiscard]] auto GetNumber() const -> int;
+        [[nodiscard]] auto isEmpty() const -> bool override { return false; }
+        [[nodiscard]] auto getValue() const -> int;
 
     private:
         const int m_number;

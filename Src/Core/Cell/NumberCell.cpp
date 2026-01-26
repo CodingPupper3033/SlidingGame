@@ -10,7 +10,7 @@ namespace SlidingGame::Core
     {
     }
 
-    auto NumberCell::GetNumber() const -> int
+    auto NumberCell::getValue() const -> int
     {
         return m_number;
     }

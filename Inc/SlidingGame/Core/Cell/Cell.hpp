@@ -10,9 +10,11 @@ namespace SlidingGame::Core
     class Cell
     {
     public:
+        Cell() = default;
+
         virtual ~Cell() = default;
 
-        [[nodiscard]] virtual auto IsEmpty() const -> bool = 0;
+        [[nodiscard]] virtual auto isEmpty() const -> bool = 0;
     };
 }
 
