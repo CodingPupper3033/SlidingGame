@@ -2,8 +2,8 @@
 // Created by codin on 1/25/26.
 //
 
-#include "../../Inc/SlidingGame/Core/SlidingGame.h"
-#include "../../Inc/SlidingGame/Core/Board.hpp"
+#include "Core/SlidingGame.h"
+#include "Core/Board.hpp"
 #include "Core/Cell/EmptyCell.hpp"
 #include "Core/Cell/NumberCell.hpp"
 
