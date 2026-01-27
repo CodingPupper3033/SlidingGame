@@ -7,7 +7,7 @@
 #include "Core/Cell/EmptyCell.hpp"
 #include "Core/Cell/NumberCell.hpp"
 
-SlidingGame::Core::SlidingGame::SlidingGame(size_t width, size_t height) : board(width, height)
+SlidingGame::Core::SlidingGame::SlidingGame(const size_t width, const size_t height) : board(width, height)
 {
     // Fill the board with number cells
     for (size_t i = 0; i < width * height - 1; i++) {
@@ -22,7 +22,12 @@ SlidingGame::Core::SlidingGame::SlidingGame(size_t width, size_t height) : board
     emptyY = height - 1;
 }
 
-auto SlidingGame::Core::SlidingGame::at(size_t x, size_t y) const -> const Cell &
+auto SlidingGame::Core::SlidingGame::at(const size_t x, const size_t y) const -> const Cell &
 {
     return board.at(x, y);
+}
+
+auto SlidingGame::Core::SlidingGame::getRow(const size_t y) const -> std::vector<const Cell *>
+{
+    return board.getRow(y);
 }

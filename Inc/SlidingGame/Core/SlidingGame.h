@@ -29,9 +29,12 @@ namespace SlidingGame::Core
         [[nodiscard]] auto getWidth() const -> size_t { return board.getWidth(); }
         [[nodiscard]] auto getHeight() const -> size_t { return board.getHeight(); }
         [[nodiscard]] auto getMoves() const -> int { return moves; }
-        [[nodiscard]] auto at(size_t x, size_t y) const -> const Cell&;
 
-        auto slide(size_t x, size_t y, Direction direction) -> void;
+        [[nodiscard]] auto at(size_t x, size_t y) const -> const Cell&;
+        [[nodiscard]] auto getRow(size_t y) const -> std::vector<const Cell*>;
+
+        /* Methods */
+        auto slide(size_t x, size_t y, Direction direction) -> bool;
 
     private:
         Board board;

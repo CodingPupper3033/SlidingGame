@@ -29,6 +29,24 @@ auto SlidingGame::Core::Board::at(const std::size_t x, const std::size_t y) cons
     return *ptr;
 }
 
+auto SlidingGame::Core::Board::getRow(std::size_t y) const -> std::vector<const Cell*>
+{
+    ensureValidPosition(0,y);
+
+    std::vector<const Cell*> row;
+    row.reserve(m_width);
+
+    for (std::size_t x = 0; x < m_width; ++x) {
+        const auto &ptr = m_cells[index(x,y)];
+        if (ptr == nullptr) {
+            throw std::runtime_error("Cell at position is null");
+        }
+        row.push_back(ptr.get());
+    }
+
+    return row;
+}
+
 void SlidingGame::Core::Board::setCell(const std::size_t x, const std::size_t y, std::unique_ptr<Cell> cell)
 {
     ensureValidPosition(x,y);
@@ -46,11 +64,11 @@ void SlidingGame::Core::Board::swap(const std::size_t x1, const std::size_t y1, 
     std::swap(m_cells[index(x1,y1)], m_cells[index(x2,y2)]);
 }
 
-bool SlidingGame::Core::Board::isValidPosition(std::size_t x, std::size_t y) const
+bool SlidingGame::Core::Board::isValidPosition(const std::size_t x, const std::size_t y) const
 {
     // Check if the position is valid
-    return static_cast<size_t>(x) < static_cast<size_t>(m_width) &&
-           static_cast<size_t>(y) < static_cast<size_t>(m_height);
+    return x < m_width &&
+           y < m_height;
 }
 
 void SlidingGame::Core::Board::ensureValidPosition(size_t x, size_t y) const

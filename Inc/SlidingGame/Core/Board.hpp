@@ -21,6 +21,7 @@ namespace SlidingGame::Core
         [[nodiscard]] auto getHeight() const -> std::size_t { return m_height; }
 
         [[nodiscard]] auto at(std::size_t x, std::size_t y) const -> const Cell&;
+        [[nodiscard]] auto getRow(std::size_t y) const -> std::vector<const Cell*>;
 
         /* Setters */
         void setCell(std::size_t x, std::size_t y, std::unique_ptr<Cell> cell);
