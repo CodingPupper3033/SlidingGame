@@ -13,9 +13,9 @@ SlidingGame::Core::Board::Board(const size_t width, const size_t height)
     m_cells = std::vector<std::unique_ptr<Cell>>(width * height);
 }
 
-auto SlidingGame::Core::Board::at(const std::size_t x, const std::size_t y) const -> const Cell &
+auto SlidingGame::Core::Board::at(const Cord x, const Cord y) const -> const Cell &
 {
-    ensureValidPosition(x,y);
+    ensureInBounds(x,y);
 
     // Get the cell
     const auto &ptr = m_cells[y * m_width + x];
@@ -29,9 +29,9 @@ auto SlidingGame::Core::Board::at(const std::size_t x, const std::size_t y) cons
     return *ptr;
 }
 
-auto SlidingGame::Core::Board::getRow(std::size_t y) const -> std::vector<const Cell*>
+auto SlidingGame::Core::Board::getRow(const Cord y) const -> std::vector<const Cell*>
 {
-    ensureValidPosition(0,y);
+    ensureInBounds(0,y);
 
     std::vector<const Cell*> row;
     row.reserve(m_width);
@@ -49,7 +49,7 @@ auto SlidingGame::Core::Board::getRow(std::size_t y) const -> std::vector<const 
 
 void SlidingGame::Core::Board::setCell(const std::size_t x, const std::size_t y, std::unique_ptr<Cell> cell)
 {
-    ensureValidPosition(x,y);
+    ensureInBounds(x,y);
 
     // Set the cell
     m_cells[index(x,y)] = std::move(cell);
@@ -57,23 +57,23 @@ void SlidingGame::Core::Board::setCell(const std::size_t x, const std::size_t y,
 
 void SlidingGame::Core::Board::swap(const std::size_t x1, const std::size_t y1, const std::size_t x2, const std::size_t y2)
 {
-    ensureValidPosition(x1,y1);
-    ensureValidPosition(x2,y2);
+    ensureInBounds(x1,y1);
+    ensureInBounds(x2,y2);
 
     // Swap the cells
     std::swap(m_cells[index(x1,y1)], m_cells[index(x2,y2)]);
 }
 
-bool SlidingGame::Core::Board::isValidPosition(const std::size_t x, const std::size_t y) const
+bool SlidingGame::Core::Board::isInBounds(const std::size_t x, const std::size_t y) const
 {
     // Check if the position is valid
     return x < m_width &&
            y < m_height;
 }
 
-void SlidingGame::Core::Board::ensureValidPosition(size_t x, size_t y) const
+void SlidingGame::Core::Board::ensureInBounds(size_t x, size_t y) const
 {
-    if (!isValidPosition(x, y)) {
+    if (!isInBounds(x, y)) {
         throw std::out_of_range("Cell position out of bounds");
     }
 }
