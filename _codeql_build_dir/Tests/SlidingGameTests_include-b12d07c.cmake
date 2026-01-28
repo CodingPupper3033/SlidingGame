@@ -1,0 +1,5 @@
+if(EXISTS "/home/runner/work/SlidingGame/SlidingGame/_codeql_build_dir/Tests/SlidingGameTests_tests-b12d07c.cmake")
+  include("/home/runner/work/SlidingGame/SlidingGame/_codeql_build_dir/Tests/SlidingGameTests_tests-b12d07c.cmake")
+else()
+  add_test(SlidingGameTests_NOT_BUILT-b12d07c SlidingGameTests_NOT_BUILT-b12d07c)
+endif()

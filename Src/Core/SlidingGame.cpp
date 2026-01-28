@@ -34,6 +34,11 @@ auto SlidingGame::Core::SlidingGame::getRow(const size_t y) const -> std::vector
 
 auto SlidingGame::Core::SlidingGame::slide(const size_t x, const size_t y, const Direction direction) -> bool
 {
+    // Check if the source position is within bounds
+    if (x >= getWidth() || y >= getHeight()) {
+        return false;
+    }
+    
     // Check if the cell at (x, y) is adjacent to the empty cell
     size_t targetX = x;
     size_t targetY = y;

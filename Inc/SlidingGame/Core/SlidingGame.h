@@ -34,6 +34,14 @@ namespace SlidingGame::Core
         [[nodiscard]] auto getRow(size_t y) const -> std::vector<const Cell*>;
 
         /* Methods */
+        /**
+         * Attempts to slide the tile at position (x, y) in the specified direction.
+         * The move succeeds only if the empty cell is adjacent in that direction.
+         * @param x x coordinate of the tile to slide
+         * @param y y coordinate of the tile to slide
+         * @param direction direction to slide the tile (UP, DOWN, LEFT, RIGHT)
+         * @return true if the slide was successful, false otherwise
+         */
         auto slide(size_t x, size_t y, Direction direction) -> bool;
 
     private:
