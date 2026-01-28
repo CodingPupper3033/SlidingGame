@@ -12,7 +12,7 @@ namespace SlidingGame::Core
     class NumberCell: public Cell
     {
     public:
-        explicit NumberCell(int number): m_number(number) {}
+        explicit NumberCell(const int number): m_number(number) {}
 
         [[nodiscard]] auto isEmpty() const -> bool override { return false; }
         [[nodiscard]] auto getValue() const -> std::optional<int> override { return m_number; }
