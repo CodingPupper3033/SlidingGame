@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSlidingGameCore.a CMakeFiles/SlidingGameCore.dir/Cell/Cell.cpp.o CMakeFiles/SlidingGameCore.dir/Cell/EmptyCell.cpp.o CMakeFiles/SlidingGameCore.dir/Cell/NumberCell.cpp.o CMakeFiles/SlidingGameCore.dir/Board.cpp.o CMakeFiles/SlidingGameCore.dir/SlidingGame.cpp.o
+/usr/bin/ranlib libSlidingGameCore.a

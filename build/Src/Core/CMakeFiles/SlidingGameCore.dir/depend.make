@@ -1,0 +1,2 @@
+# Empty dependencies file for SlidingGameCore.
+# This may be replaced when dependencies are built.

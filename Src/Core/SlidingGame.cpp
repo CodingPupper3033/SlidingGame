@@ -31,3 +31,42 @@ auto SlidingGame::Core::SlidingGame::getRow(const size_t y) const -> std::vector
 {
     return board.getRow(y);
 }
+
+auto SlidingGame::Core::SlidingGame::slide(const size_t x, const size_t y, const Direction direction) -> bool
+{
+    // Check if the cell at (x, y) is adjacent to the empty cell
+    size_t targetX = x;
+    size_t targetY = y;
+    
+    switch (direction) {
+        case Direction::UP:
+            if (y == 0) return false;
+            targetY = y - 1;
+            break;
+        case Direction::DOWN:
+            if (y >= getHeight() - 1) return false;
+            targetY = y + 1;
+            break;
+        case Direction::LEFT:
+            if (x == 0) return false;
+            targetX = x - 1;
+            break;
+        case Direction::RIGHT:
+            if (x >= getWidth() - 1) return false;
+            targetX = x + 1;
+            break;
+    }
+    
+    // Check if the target cell is the empty cell
+    if (targetX != emptyX || targetY != emptyY) {
+        return false;
+    }
+    
+    // Swap the cells
+    board.swap(x, y, emptyX, emptyY);
+    emptyX = x;
+    emptyY = y;
+    moves++;
+    
+    return true;
+}

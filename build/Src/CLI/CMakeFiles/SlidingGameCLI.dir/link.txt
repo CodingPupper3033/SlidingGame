@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/SlidingGameCLI.dir/link.d CMakeFiles/SlidingGameCLI.dir/main.cpp.o CMakeFiles/SlidingGameCLI.dir/CliRenderer.cpp.o -o SlidingGameCLI  ../Core/libSlidingGameCore.a
