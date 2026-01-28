@@ -7,12 +7,12 @@
 #include "Core/Cell/EmptyCell.h"
 #include "Core/Cell/NumberCell.h"
 
-SlidingGame::Core::SlidingGame::SlidingGame(const size_t width, const size_t height) : board(width, height)
+SlidingGame::Core::SlidingGame::SlidingGame(const Index width, const Index height) : board(width, height)
 {
     // Fill the board with number cells
-    for (size_t i = 0; i < width * height - 1; i++) {
-        const size_t x = i % width;
-        const size_t y = i / width;
+    for (Coord i = 0; i < width * height - 1; i++) {
+        const Coord x = i % width;
+        const Coord y = i / width;
         board.setCell(x, y, std::unique_ptr<Cell>(new NumberCell(static_cast<int>(i + 1))));
     }
 

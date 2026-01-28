@@ -22,8 +22,8 @@ namespace SlidingGame::Core
             RIGHT
         };
 
-        explicit SlidingGame(const size_t size): SlidingGame(size, size) {}
-        SlidingGame(size_t width, size_t height);
+        explicit SlidingGame(const Index size): SlidingGame(size, size) {}
+        SlidingGame(Index width, Index height);
 
         /* Getters */
         [[nodiscard]] auto getWidth() const -> size_t { return board.getWidth(); }
