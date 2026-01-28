@@ -5,7 +5,7 @@
 #ifndef SLIDINGGAME_NUMBERCELL_H
 #define SLIDINGGAME_NUMBERCELL_H
 
-#include "Cell.hpp"
+#include "Cell.h"
 
 namespace SlidingGame::Core
 {

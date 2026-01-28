@@ -5,7 +5,7 @@
 #ifndef SLIDINGGAME_EMPTYCELL_H
 #define SLIDINGGAME_EMPTYCELL_H
 
-#include "Cell.hpp"
+#include "Cell.h"
 
 namespace SlidingGame::Core
 {

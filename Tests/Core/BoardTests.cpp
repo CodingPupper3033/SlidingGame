@@ -3,8 +3,8 @@
 //
 
 #include "catch2/catch_test_macros.hpp"
-#include "Core/Board.hpp"
-#include "Core/Cell/NumberCell.hpp"
+#include "Core/Board.h"
+#include "Core/Cell/NumberCell.h"
 
 TEST_CASE("Board Cell Access and Manipulation", "[Board][Cell]")
 {

@@ -7,11 +7,11 @@
 #include <memory>
 #include <vector>
 
-#include "Cell/Cell.hpp"
+#include "Cell/Cell.h"
 
 namespace SlidingGame::Core
 {
-    using Cord = int;
+    using Coord = int;
     using Index = std::size_t;
 
     class Board
@@ -43,31 +43,31 @@ namespace SlidingGame::Core
          * @param y y coordinate
          * @return reference to the cell at the given position
          */
-        [[nodiscard]] auto at(Cord x, Cord y) const -> const Cell&;
+        [[nodiscard]] auto at(Coord x, Coord y) const -> const Cell&;
 
         /**
          * Gets a row of cells at the given y coordinate
          * @param y y coordinate
          * @return vector of pointers to the cells in the row
          */
-        [[nodiscard]] auto getRow(Cord y) const -> std::vector<const Cell*>;
+        [[nodiscard]] auto getRow(Coord y) const -> std::vector<const Cell*>;
 
         /* Setters */
-        void setCell(std::size_t x, std::size_t y, std::unique_ptr<Cell> cell);
+        void setCell(Coord x, Coord y, std::unique_ptr<Cell> cell);
 
         /* Methods */
-        void swap(std::size_t x1, std::size_t y1, std::size_t x2, std::size_t y2);
+        void swap(Coord x1, Coord y1, Coord x2, Coord y2);
 
         ~Board() = default;
     private:
-        std::size_t m_width{};
-        std::size_t m_height{};
+        Index m_width{};
+        Index m_height{};
         std::vector<std::unique_ptr<Cell>> m_cells;
 
         /* Index & Position */
-        [[nodiscard]] bool isInBounds(std::size_t x, std::size_t y) const;
-        void ensureInBounds(std::size_t x, std::size_t y) const;
-        [[nodiscard]] std::size_t index(const std::size_t x, const std::size_t y) const { return y * m_width + x; }
+        [[nodiscard]] bool isInBounds(Coord x, Coord y) const;
+        void ensureInBounds(Coord x, Coord y) const;
+        [[nodiscard]] Index index(const Coord x, const Coord y) const { return y * m_width + x; }
     };
 }
 

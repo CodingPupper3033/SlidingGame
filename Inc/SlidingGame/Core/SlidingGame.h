@@ -5,7 +5,7 @@
 #ifndef SLIDINGGAME_SLIDINGGAME_H
 #define SLIDINGGAME_SLIDINGGAME_H
 
-#include "Board.hpp"
+#include "Board.h"
 
 namespace SlidingGame::Core
 {

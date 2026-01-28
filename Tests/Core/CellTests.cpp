@@ -2,11 +2,11 @@
 // Created by codin on 1/26/26.
 //
 
-#include "../../Inc/SlidingGame/Core/Board.hpp"
-#include "../../Inc/SlidingGame/Core/Cell/Cell.hpp"
+#include "../../Inc/SlidingGame/Core/Board.h"
+#include "../../Inc/SlidingGame/Core/Cell/Cell.h"
 #include "catch2/catch_test_macros.hpp"
-#include "Core/Cell/EmptyCell.hpp"
-#include "Core/Cell/NumberCell.hpp"
+#include "Core/Cell/EmptyCell.h"
+#include "Core/Cell/NumberCell.h"
 
 TEST_CASE("Empty Cell is empty", "[Cell][EmptyCell]")
 {

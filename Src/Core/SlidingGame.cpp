@@ -3,9 +3,9 @@
 //
 
 #include "Core/SlidingGame.h"
-#include "Core/Board.hpp"
-#include "Core/Cell/EmptyCell.hpp"
-#include "Core/Cell/NumberCell.hpp"
+#include "Core/Board.h"
+#include "Core/Cell/EmptyCell.h"
+#include "Core/Cell/NumberCell.h"
 
 SlidingGame::Core::SlidingGame::SlidingGame(const size_t width, const size_t height) : board(width, height)
 {
