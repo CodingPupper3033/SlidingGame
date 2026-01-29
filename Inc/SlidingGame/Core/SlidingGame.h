@@ -55,6 +55,9 @@ namespace SlidingGame::Core
          */
         [[nodiscard]] auto getRow(Coord y) const -> std::vector<const Cell*>;
 
+        /* Setters */
+        void setMoves(const Index newMoves) { moves = newMoves; }
+
         /* Coordinates */
         /**
          * Offsets the given coordinates in the specified direction by the given offset.
@@ -68,6 +71,7 @@ namespace SlidingGame::Core
 
         /* Methods */
         auto slide(Coord x, Coord y, Direction direction) -> bool;
+        auto isSolved() const -> bool;
 
     private:
         Board board;

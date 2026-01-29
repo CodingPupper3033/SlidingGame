@@ -23,5 +23,6 @@ FetchContent_MakeAvailable(catch2)
 # Project modules
 # ---------------
 add_subdirectory( Src/Core )
+add_subdirectory( Src/Utils )
 add_subdirectory( Src/CLI )
 add_subdirectory( Tests )

@@ -102,3 +102,25 @@ auto SlidingGame::Core::SlidingGame::slide(const Coord x, const Coord y, const D
 
     return true;
 }
+
+auto SlidingGame::Core::SlidingGame::isSolved() const -> bool
+{
+    for (Coord y = 0; y < getHeight(); y++)
+        for (Coord x = 0; x < getWidth(); x++) {
+            const Index index = board.index(x, y);
+            const Cell &cell = board.at(x, y);
+
+            // Last cell should be empty
+            if (index == getWidth() * getHeight() - 1) {
+                if (!cell.isEmpty())
+                    return false;
+                continue;
+            }
+
+            // Check if the cell is a NumberCell with the correct value
+            const auto *numberCell = dynamic_cast<const NumberCell *>(&cell);
+            if (!numberCell || numberCell->getValue() != static_cast<int>(index + 1))
+                return false;
+        }
+    return true;
+}
