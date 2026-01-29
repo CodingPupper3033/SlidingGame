@@ -8,7 +8,7 @@
 #include "Core/Cell/EmptyCell.h"
 #include "Core/Cell/NumberCell.h"
 
-TEST_CASE("Empty Cell is empty", "[Cell][EmptyCell]")
+TEST_CASE("EmptyCell: is empty", "[Cell][EmptyCell]")
 {
     using namespace SlidingGame::Core;
 
@@ -17,7 +17,7 @@ TEST_CASE("Empty Cell is empty", "[Cell][EmptyCell]")
     REQUIRE(emptyCell.isEmpty());
 }
 
-TEST_CASE("Number Cell is not empty and has correct value", "[Cell][NumberCell]")
+TEST_CASE("NumberCell: is not empty and has correct value", "[Cell][NumberCell]")
 {
     using namespace SlidingGame::Core;
 
@@ -27,7 +27,7 @@ TEST_CASE("Number Cell is not empty and has correct value", "[Cell][NumberCell]"
     REQUIRE(numberCell.getValue() == 5);
 }
 
-TEST_CASE("Cells are polymorphic", "[Cell][Polymorphism]")
+TEST_CASE("Cell: are polymorphic", "[Cell][Polymorphism]")
 {
     using namespace SlidingGame::Core;
 
@@ -43,7 +43,7 @@ TEST_CASE("Cells are polymorphic", "[Cell][Polymorphism]")
     REQUIRE(numberCell->getValue() == 10);
 }
 
-TEST_CASE("Number Cell with negative value", "[Cell][NumberCell][NegativeValue]")
+TEST_CASE("NumberCell: with negative value", "[Cell][NumberCell][NegativeValue]")
 {
     using namespace SlidingGame::Core;
 
@@ -54,7 +54,7 @@ TEST_CASE("Number Cell with negative value", "[Cell][NumberCell][NegativeValue]"
 }
 
 static_assert(std::is_abstract_v<SlidingGame::Core::Cell>, "Cell must remain an abstract class.");
-TEST_CASE("Cell can't be instantiated directly", "[Cell][Abstract]")
+TEST_CASE("Cell: can't be instantiated directly", "[Cell][Abstract]")
 {
     SUCCEED("Cell is abstract and cannot be instantiated directly.");
 }

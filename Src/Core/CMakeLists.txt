@@ -1,4 +1,4 @@
-add_library( SlidingGameCore STATIC
+add_library( SlidingGameCore
         Cell/Cell.cpp
         Cell/EmptyCell.cpp
         Cell/NumberCell.cpp

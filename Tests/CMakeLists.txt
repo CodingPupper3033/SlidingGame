@@ -1,14 +1,21 @@
-file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS
-        "${CMAKE_CURRENT_SOURCE_DIR}/Core/*.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/CLI/*.cpp"
+# Include module tests
+add_subdirectory(Core)
+
+# All tests
+set(ALL_TESTS_SOURCES
+        ${CORE_TESTS_SOURCES}
 )
 
-add_executable(SlidingGameTests ${TEST_SOURCES})
+add_executable(AllTests
+        ${ALL_TESTS_SOURCES}
+)
 
-target_link_libraries(SlidingGameTests
+target_link_libraries(AllTests
         PRIVATE SlidingGameCore Catch2::Catch2WithMain
 )
 
+target_compile_features(AllTests PUBLIC cxx_std_23)
+
 include(CTest)
 include(Catch)
-catch_discover_tests(SlidingGameTests)
+catch_discover_tests(AllTests)

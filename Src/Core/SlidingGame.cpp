@@ -74,7 +74,16 @@ auto SlidingGame::Core::SlidingGame::slide(const Coord x, const Coord y, const D
         y_curr = nextY;
     }
 
-    printf("To slide");
+    // Perform the slide by swapping cells from the empty cell to the target cell
+    Coord x_slide = emptyX;
+    Coord y_slide = emptyY;
+
+    while (x_slide != x || y_slide != y) {
+        const auto [prevX, prevY] = offsetCoord(x_slide, y_slide, direction, -1);
+        board.swap(x_slide, y_slide, prevX, prevY);
+        x_slide = prevX;
+        y_slide = prevY;
+    }
 
     return true;
 }

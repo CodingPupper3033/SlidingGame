@@ -6,7 +6,7 @@
 #include "Core/Board.h"
 #include "Core/Cell/NumberCell.h"
 
-TEST_CASE("Board Cell Access and Manipulation", "[Board][Cell]")
+TEST_CASE("Board: Cell Access and Manipulation", "[Board][Cell]")
 {
     using namespace SlidingGame::Core;
 
