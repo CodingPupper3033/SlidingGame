@@ -97,3 +97,93 @@ TEST_CASE("SlidingGame: Get Row of Cells", "[SlidingGame][Core]") {
     REQUIRE(row[2]->getValue() == 7);
     REQUIRE(row[3]->getValue() == 8);
 }
+
+TEST_CASE("SlidingGame: Move Count Increments on Valid Slide", "[SlidingGame][Core]") {
+    SlidingGame::Core::SlidingGame game(3, 3);
+
+    REQUIRE(game.getMoves() == 0);
+
+    // Perform a valid slide
+    bool moved = game.slide(2, 1, SlidingGame::Core::SlidingGame::Direction::DOWN);
+    REQUIRE(moved);
+    REQUIRE(game.getMoves() == 1);
+
+    // Perform another valid slide
+    moved = game.slide(1, 1, SlidingGame::Core::SlidingGame::Direction::RIGHT);
+    REQUIRE(moved);
+    REQUIRE(game.getMoves() == 2);
+}
+
+TEST_CASE("SlidingGame: Move Count Does Not Increment on Invalid Slide", "[SlidingGame][Core]") {
+    SlidingGame::Core::SlidingGame game(3, 3);
+
+    REQUIRE(game.getMoves() == 0);
+
+    // Attempt an invalid slide
+    bool moved = game.slide(0, 0, SlidingGame::Core::SlidingGame::Direction::DOWN);
+    REQUIRE(!moved);
+    REQUIRE(game.getMoves() == 0);
+}
+
+TEST_CASE("SlidingGame: Sliding updates Empty Cell Position", "[SlidingGame][Core]") {
+    SlidingGame::Core::SlidingGame game(3, 3);
+
+    // Initial empty cell position
+    const auto& initialEmptyCell = game.at(2, 2);
+    REQUIRE(initialEmptyCell.isEmpty());
+
+    // Slide a cell into the empty space
+    bool moved = game.slide(2, 1, SlidingGame::Core::SlidingGame::Direction::DOWN);
+    REQUIRE(moved);
+
+    // Verify the new empty cell position
+    const auto& newEmptyCell = game.at(2, 1);
+    REQUIRE(newEmptyCell.isEmpty());
+}
+
+TEST_CASE("SlidingGame: Slide multiple cells at once", "[SlidingGame][Core]")
+{
+    SlidingGame::Core::SlidingGame game(4, 4);
+
+    // Slide cell at (3,0) down into empty space at (3,3)
+    bool moved = game.slide(3, 0, SlidingGame::Core::SlidingGame::Direction::DOWN);
+    REQUIRE(moved);
+
+    // Verify the new positions
+    const auto& movedCell1 = game.at(3, 3);
+    REQUIRE(!movedCell1.isEmpty());
+    REQUIRE(movedCell1.getValue() == 4); // Original value at (3,0)
+
+    const auto& newEmptyCell1 = game.at(3, 0);
+    REQUIRE(newEmptyCell1.isEmpty());
+
+    REQUIRE(game.getMoves() == 1);
+}
+
+TEST_CASE("SlidingGame: Slide cell out of bounds", "[SlidingGame][Core]") {
+    SlidingGame::Core::SlidingGame game(3, 3);
+
+    // Attempt to slide a cell out of bounds
+    bool moved = game.slide(0, 0, SlidingGame::Core::SlidingGame::Direction::UP);
+    REQUIRE(!moved); // Move should fail
+
+    // Verify positions remain unchanged
+    const auto& cell = game.at(0, 0);
+    REQUIRE(!cell.isEmpty());
+    REQUIRE(cell.getValue() == 1); // Original value at (0,0)
+
+    const auto& emptyCell = game.at(2, 2);
+    REQUIRE(emptyCell.isEmpty());
+}
+
+TEST_CASE("SlidingGame: Slide empty cell (no-op)", "[SlidingGame][Core]") {
+    SlidingGame::Core::SlidingGame game(3, 3);
+
+    // Attempt to slide the empty cell itself
+    bool moved = game.slide(2, 2, SlidingGame::Core::SlidingGame::Direction::UP);
+    REQUIRE(!moved); // Move should fail
+
+    // Verify the empty cell position remains unchanged
+    const auto& emptyCell = game.at(2, 2);
+    REQUIRE(emptyCell.isEmpty());
+}

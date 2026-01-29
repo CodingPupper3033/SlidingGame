@@ -56,6 +56,9 @@ auto SlidingGame::Core::SlidingGame::offsetCoord(const Coord x, const Coord y, c
 
 auto SlidingGame::Core::SlidingGame::slide(const Coord x, const Coord y, const Direction direction) -> bool
 {
+    if (x == emptyX && y == emptyY)
+        return false; // Cannot slide the empty cell
+
     auto x_curr = static_cast<Coord>(x);
     auto y_curr = static_cast<Coord>(y);
     while (true) {
@@ -80,13 +83,19 @@ auto SlidingGame::Core::SlidingGame::slide(const Coord x, const Coord y, const D
     // Perform the slide by swapping cells from the empty cell to the target cell
     Coord x_slide = emptyX;
     Coord y_slide = emptyY;
-
     while (x_slide != x || y_slide != y) {
         const auto [prevX, prevY] = offsetCoord(x_slide, y_slide, direction, -1);
         board.swap(x_slide, y_slide, prevX, prevY);
         x_slide = prevX;
         y_slide = prevY;
     }
+
+    // Update the empty cell position
+    emptyX = x;
+    emptyY = y;
+
+    // Increment move count
+    moves++;
 
     return true;
 }
