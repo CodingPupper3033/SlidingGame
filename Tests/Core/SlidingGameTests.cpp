@@ -50,3 +50,14 @@ TEST_CASE("SlidingGame: Invalid Slide Attempt", "[SlidingGame][Core]") {
     const auto& emptyCell = game.at(2, 2);
     REQUIRE(emptyCell.isEmpty());
 }
+
+TEST_CASE("SlidingGame: Get Row of Cells", "[SlidingGame][Core]") {
+    SlidingGame::Core::SlidingGame game(4, 4);
+
+    const auto row = game.getRow(1);
+    REQUIRE(row.size() == 4);
+    REQUIRE(row[0]->getValue() == 5);
+    REQUIRE(row[1]->getValue() == 6);
+    REQUIRE(row[2]->getValue() == 7);
+    REQUIRE(row[3]->getValue() == 8);
+}
