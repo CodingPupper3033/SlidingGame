@@ -10,24 +10,71 @@
 SlidingGame::Core::SlidingGame::SlidingGame(const Index width, const Index height) : board(width, height)
 {
     // Fill the board with number cells
-    for (Coord i = 0; i < width * height - 1; i++) {
-        const Coord x = i % width;
-        const Coord y = i / width;
-        board.setCell(x, y, std::unique_ptr<Cell>(new NumberCell(static_cast<int>(i + 1))));
-    }
+    for (Coord y = 0; y < height; y++)
+        for (Coord x = 0; x < width; x++) {
+            const Index number = y * width + x + 1;
+            if (number == width * height)
+                break;
+            board.setCell(x, y, std::unique_ptr<Cell>(new NumberCell(static_cast<int>(number))));
+        }
 
     // Set the last cell as the empty cell
-    board.setCell(width - 1, height - 1, std::unique_ptr<Cell>(new EmptyCell()));
-    emptyX = width - 1;
-    emptyY = height - 1;
+    emptyX = static_cast<Coord>(width - 1);
+    emptyY = static_cast<Coord>(height - 1);
+    board.setCell(emptyX, emptyY, std::unique_ptr<Cell>(new EmptyCell()));
 }
 
-auto SlidingGame::Core::SlidingGame::at(const size_t x, const size_t y) const -> const Cell &
+auto SlidingGame::Core::SlidingGame::at(const Coord x, const Coord y) const -> const Cell &
 {
     return board.at(x, y);
 }
 
-auto SlidingGame::Core::SlidingGame::getRow(const size_t y) const -> std::vector<const Cell *>
+auto SlidingGame::Core::SlidingGame::getRow(const Coord y) const -> std::vector<const Cell *>
 {
     return board.getRow(y);
+}
+
+auto SlidingGame::Core::SlidingGame::offsetCoord(const Coord x, const Coord y, const Direction direction,
+    const Coord offset) -> std::pair<Coord, Coord>
+{
+    switch (direction) {
+    case Direction::UP:
+        return { x, (y - offset) };
+    case Direction::DOWN:
+        return { x, (y + offset) };
+    case Direction::LEFT:
+        return { (x - offset), y };
+    case Direction::RIGHT:
+        return { (x + offset), y };
+    default:
+        return { x, y };
+    }
+}
+
+auto SlidingGame::Core::SlidingGame::slide(const Coord x, const Coord y, const Direction direction) -> bool
+{
+    auto x_curr = static_cast<Coord>(x);
+    auto y_curr = static_cast<Coord>(y);
+    while (true) {
+        // Get the next coordinates in the specified direction
+        const auto [nextX, nextY] = offsetCoord(x_curr, y_curr, direction, 1);
+
+        // Check if the next coordinates are out of bounds
+        if (!board.isInBounds(nextX, nextY))
+            return false;
+
+        // Check if the next cell is the empty cell
+        if (nextX == emptyX && nextY == emptyY) {
+            // Found the empty cell, exit to perform the slide
+            break;
+        }
+
+        // Move to the next cell
+        x_curr = nextX;
+        y_curr = nextY;
+    }
+
+    printf("To slide");
+
+    return true;
 }

@@ -55,6 +55,9 @@ namespace SlidingGame::Core
         /* Setters */
         void setCell(Coord x, Coord y, std::unique_ptr<Cell> cell);
 
+        /* Coordinates */
+        [[nodiscard]] bool isInBounds(Coord x, Coord y) const;
+
         /* Methods */
         void swap(Coord x1, Coord y1, Coord x2, Coord y2);
 
@@ -65,7 +68,7 @@ namespace SlidingGame::Core
         std::vector<std::unique_ptr<Cell>> m_cells;
 
         /* Index & Position */
-        [[nodiscard]] bool isInBounds(Coord x, Coord y) const;
+
         void ensureInBounds(Coord x, Coord y) const;
         [[nodiscard]] Index index(const Coord x, const Coord y) const { return y * m_width + x; }
     };

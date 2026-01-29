@@ -26,23 +26,25 @@ namespace SlidingGame::Core
         SlidingGame(Index width, Index height);
 
         /* Getters */
-        [[nodiscard]] auto getWidth() const -> size_t { return board.getWidth(); }
-        [[nodiscard]] auto getHeight() const -> size_t { return board.getHeight(); }
-        [[nodiscard]] auto getMoves() const -> int { return moves; }
+        [[nodiscard]] auto getWidth() const -> Index { return board.getWidth(); }
+        [[nodiscard]] auto getHeight() const -> Index { return board.getHeight(); }
+        [[nodiscard]] auto getMoves() const -> Index { return moves; }
 
-        [[nodiscard]] auto at(size_t x, size_t y) const -> const Cell&;
-        [[nodiscard]] auto getRow(size_t y) const -> std::vector<const Cell*>;
+        [[nodiscard]] auto at(Coord x, Coord y) const -> const Cell&;
+        [[nodiscard]] auto getRow(Coord y) const -> std::vector<const Cell*>;
+
+        [[nodiscard]] static auto offsetCoord(Coord x, Coord y, Direction direction, Coord offset) -> std::pair<Coord, Coord>;
 
         /* Methods */
-        auto slide(size_t x, size_t y, Direction direction) -> bool;
+        auto slide(Coord x, Coord y, Direction direction) -> bool;
 
     private:
         Board board;
 
-        size_t emptyX;
-        size_t emptyY;
+        Coord emptyX;
+        Coord emptyY;
 
-        int moves = 0;
+        Index moves = 0;
     };
 }
 
