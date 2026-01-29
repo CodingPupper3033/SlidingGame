@@ -12,6 +12,42 @@ TEST_CASE("SlidingGame: Get Width and Height", "[SlidingGame][Core]") {
     REQUIRE(game.getHeight() == 5);
 }
 
+TEST_CASE("SlidingGame: Initial Number Cell Positions", "[SlidingGame][Core]") {
+    const SlidingGame::Core::SlidingGame game(3, 3);
+
+    const auto& cell_0_0 = game.at(0, 0);
+    REQUIRE(!cell_0_0.isEmpty());
+    REQUIRE(cell_0_0.getValue() == 1);
+
+    const auto& cell_1_0 = game.at(1, 0);
+    REQUIRE(!cell_1_0.isEmpty());
+    REQUIRE(cell_1_0.getValue() == 2);
+
+    const auto& cell_2_0 = game.at(2, 0);
+    REQUIRE(!cell_2_0.isEmpty());
+    REQUIRE(cell_2_0.getValue() == 3);
+
+    const auto& cell_0_1 = game.at(0, 1);
+    REQUIRE(!cell_0_1.isEmpty());
+    REQUIRE(cell_0_1.getValue() == 4);
+
+    const auto& cell_1_1 = game.at(1, 1);
+    REQUIRE(!cell_1_1.isEmpty());
+    REQUIRE(cell_1_1.getValue() == 5);
+
+    const auto& cell_2_1 = game.at(2, 1);
+    REQUIRE(!cell_2_1.isEmpty());
+    REQUIRE(cell_2_1.getValue() == 6);
+
+    const auto& cell_0_2 = game.at(0, 2);
+    REQUIRE(!cell_0_2.isEmpty());
+    REQUIRE(cell_0_2.getValue() == 7);
+
+    const auto& cell_1_2 = game.at(1, 2);
+    REQUIRE(!cell_1_2.isEmpty());
+    REQUIRE(cell_1_2.getValue() == 8);
+}
+
 TEST_CASE("SlidingGame: Initial Empty Cell Position", "[SlidingGame][Core]") {
     const SlidingGame::Core::SlidingGame game(3, 3);
 

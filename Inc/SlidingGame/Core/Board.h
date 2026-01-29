@@ -56,7 +56,22 @@ namespace SlidingGame::Core
         void setCell(Coord x, Coord y, std::unique_ptr<Cell> cell);
 
         /* Coordinates */
+        /**
+         * Checks if the given coordinates are within the bounds of the board
+         * @param x x coordinate
+         * @param y y coordinate
+         * @return true if the coordinates are within bounds, false otherwise
+         */
         [[nodiscard]] bool isInBounds(Coord x, Coord y) const;
+
+        /* Indexing */
+        /**
+         * Converts (x, y) coordinates to a linear index
+         * @param x x coordinate
+         * @param y y coordinate
+         * @return linear index corresponding to the (x, y) coordinates
+         */
+        [[nodiscard]] Index index(const Coord x, const Coord y) const { return y * m_width + x; }
 
         /* Methods */
         void swap(Coord x1, Coord y1, Coord x2, Coord y2);
@@ -68,9 +83,7 @@ namespace SlidingGame::Core
         std::vector<std::unique_ptr<Cell>> m_cells;
 
         /* Index & Position */
-
         void ensureInBounds(Coord x, Coord y) const;
-        [[nodiscard]] Index index(const Coord x, const Coord y) const { return y * m_width + x; }
     };
 }
 

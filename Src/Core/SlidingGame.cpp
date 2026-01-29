@@ -3,6 +3,9 @@
 //
 
 #include "Core/SlidingGame.h"
+
+#include <strings.h>
+
 #include "Core/Board.h"
 #include "Core/Cell/EmptyCell.h"
 #include "Core/Cell/NumberCell.h"
@@ -12,7 +15,7 @@ SlidingGame::Core::SlidingGame::SlidingGame(const Index width, const Index heigh
     // Fill the board with number cells
     for (Coord y = 0; y < height; y++)
         for (Coord x = 0; x < width; x++) {
-            const Index number = y * width + x + 1;
+            const Index number = board.index(x, y) + 1;
             if (number == width * height)
                 break;
             board.setCell(x, y, std::unique_ptr<Cell>(new NumberCell(static_cast<int>(number))));
