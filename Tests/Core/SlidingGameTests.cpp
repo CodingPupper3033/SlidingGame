@@ -187,3 +187,11 @@ TEST_CASE("SlidingGame: Slide empty cell (no-op)", "[SlidingGame][Core]") {
     const auto& emptyCell = game.at(2, 2);
     REQUIRE(emptyCell.isEmpty());
 }
+
+TEST_CASE("SlidingGame: Slide from invalid coordinate", "[SlidingGame][Core]") {
+    SlidingGame::Core::SlidingGame game(3, 3);
+
+    // Attempt to slide from an out-of-bounds coordinate
+    bool moved = game.slide(2, 3, SlidingGame::Core::SlidingGame::Direction::UP);
+    REQUIRE(!moved); // Move should fail
+}

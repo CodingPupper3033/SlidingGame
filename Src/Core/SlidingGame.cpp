@@ -56,6 +56,9 @@ auto SlidingGame::Core::SlidingGame::offsetCoord(const Coord x, const Coord y, c
 
 auto SlidingGame::Core::SlidingGame::slide(const Coord x, const Coord y, const Direction direction) -> bool
 {
+    if (!board.isInBounds(x, y))
+        return false; // Ensure the sliding cell is within bounds
+
     if (x == emptyX && y == emptyY)
         return false; // Cannot slide the empty cell
 

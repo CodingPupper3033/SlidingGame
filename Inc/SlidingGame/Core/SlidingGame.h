@@ -38,6 +38,7 @@ namespace SlidingGame::Core
         [[nodiscard]] auto getWidth() const -> Index { return board.getWidth(); }
         [[nodiscard]] auto getHeight() const -> Index { return board.getHeight(); }
         [[nodiscard]] auto getMoves() const -> Index { return moves; }
+        [[nodiscard]] auto getEmptyCellPosition() const -> std::pair<Coord, Coord> { return { emptyX, emptyY }; }
 
         /**
          * Gets the cell at the given position.
@@ -54,6 +55,7 @@ namespace SlidingGame::Core
          */
         [[nodiscard]] auto getRow(Coord y) const -> std::vector<const Cell*>;
 
+        /* Coordinates */
         /**
          * Offsets the given coordinates in the specified direction by the given offset.
          * @param x The x coordinate.
