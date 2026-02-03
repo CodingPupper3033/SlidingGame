@@ -152,7 +152,7 @@ TEST_CASE("SlidingGame: Slide multiple cells at once", "[SlidingGame][Core]")
     // Verify the new positions
     const auto& movedCell1 = game.at(3, 3);
     REQUIRE(!movedCell1.isEmpty());
-    REQUIRE(movedCell1.getValue() == 4); // Original value at (3,0)
+    REQUIRE(movedCell1.getValue() == 12); // Original value at (3,2)
 
     const auto& newEmptyCell1 = game.at(3, 0);
     REQUIRE(newEmptyCell1.isEmpty());
