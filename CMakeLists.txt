@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 4.1)
-project(SlidingGame)
+cmake_minimum_required(VERSION 3.21)
+project(SlidingGame LANGUAGES CXX)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 23)
@@ -12,8 +12,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory( Src/Core )
 add_subdirectory( Src/Utils )
 add_subdirectory( Src/CLI )
-
+add_subdirectory( Src/GUI )
 # ---------------
-# Unit Tests
+# Tests
 # ---------------
 add_subdirectory( Tests )
